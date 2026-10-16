@@ -1,0 +1,26 @@
+# CI: every time code is pushed or a pull request is opened,
+# GitHub builds the app and runs all JUnit tests automatically.
+name: Build and test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 23
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '23'
+          cache: maven
+
+      - name: Build and run tests
+        run: ./mvnw -B verify
