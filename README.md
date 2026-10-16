@@ -2,6 +2,8 @@
 
 A JavaFX desktop app that helps faculty keep track of students: their programming skills, career goals, job status, and faculty comments. Data is stored locally in SQLite.
 
+> **About this project:** Team 33 built this app for **CS151 – Object-Oriented Programming with Java** at **San José State University**. The team wrote the core application by hand: the screens, controllers, data model and database layer. Afterward, [Claude](https://claude.com/claude-code) was used as a support tool to polish it: the UI theme, the Maven Wrapper setup, and this documentation.
+
 <p align="center">
   <img src="docs/screenshots/home.png" width="32%" alt="Home screen"/>
   <img src="docs/screenshots/define-profile.png" width="32%" alt="Define Student Profile screen"/>
