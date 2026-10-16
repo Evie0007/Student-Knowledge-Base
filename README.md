@@ -1,8 +1,8 @@
 # Student Knowledge Base
 
-A JavaFX desktop app that helps faculty keep track of students: their programming skills, career goals, job status, and faculty comments. Data is stored locally in SQLite.
+Imagine you're a teacher with a lot of students. You want to remember who knows Java, who already has a job, and what you thought of each person. That's what this app does! It's a desktop app where faculty can save student profiles, search through them and leave notes. Everything is saved on your own computer, so you don't need internet or an account.
 
-> **About this project:** Team 33 built this app for **CS151 – Object-Oriented Programming with Java** at **San José State University**. The team wrote the core application by hand: the screens, controllers, data model and database layer. Afterward, [Claude](https://claude.com/claude-code) was used as a support tool to polish it: the UI theme, the Maven Wrapper setup, and this documentation.
+> **How this project started:** My team (Team 33) and I built this app for **CS151 – Object-Oriented Programming with Java** at **San Jose State University**. We wrote the main app ourselves: every screen, the code behind the buttons, the student data classes and the database code. [Claude](https://claude.com/claude-code) was used as a helper to polish things up: a nicer look in SJSU colors, an easier way to run the app, and help writing this README after finishing the class to finalize the application.
 
 <p align="center">
   <img src="docs/screenshots/home.png" width="32%" alt="Home screen"/>
@@ -10,17 +10,19 @@ A JavaFX desktop app that helps faculty keep track of students: their programmin
   <img src="docs/screenshots/reports.png" width="32%" alt="Reports screen"/>
 </p>
 
-## Features
+## What this application can do
 
-- **Programming languages**: manage the list of languages students can pick from.
-- **Student profiles**: record each student's preferred role, academic status, job status, languages and databases.
-- **Search & edit**: filter students by name, role, language or status, then edit or delete them.
-- **Whitelist / blacklist**: flag students and filter by flag on the Reports page.
-- **Comments**: add comments to a student and read them in the profile details pop-up.
+- **Keep a list of programming languages.** You choose which languages (like Java or Python) show up as options.
+- **Make student profiles.** Save each student's name, the job they want, their school year, whether they have a job, and which languages and databases they know.
+- **Search, edit and delete.** Type a name, language or status to find students, then fix or remove their profile.
+- **Whitelist and blacklist.** Put a whitelist or blacklist flag on a student, then see just those students on the Reports page.
+- **Write comments.** Add notes about a student. Each note saves the date and time automatically.
 
-## Getting started
+## How to run it
 
-**You need:** JDK 23. Maven is optional, because the included Maven Wrapper downloads it the first time you run it.
+**What you need:** Java 23 (the JDK). You **don't** need to install Maven, the tool that builds the app. The project comes with a small script (the "Maven Wrapper") that downloads Maven for you the first time.
+
+Open a terminal and type:
 
 ```bash
 git clone https://github.com/Evie0007/Student-Knowledge-Base.git
@@ -33,13 +35,21 @@ mvnw.cmd clean javafx:run
 ./mvnw clean javafx:run
 ```
 
-On first launch the app creates `studentkb.db` in the current folder and adds Java, Python and C++ to the language list. To use a different database file, pass `-Dstudentkb.db=/path/to/file.db` to the JVM.
+The first time it opens, the app creates a file called `studentkb.db`. That's where all your data is saved. It also adds Java, Python and C++ so the language list isn't empty.
+
+*(Optional: to save the data somewhere else, add `-Dstudentkb.db=/path/to/file.db` when you start Java.)*
 
 ## How it works
 
-### Architecture
+Below are some diagrams that show how the app is put together. You don't need them to use the app, but they help if you want to understand or change the code.
 
-The app has three layers. FXML files describe each screen, a controller handles each screen's events, and one `Database` class does all the SQL.
+### The big picture
+
+Think of the app like a restaurant:
+- **Screens (FXML files)** are the menu and the dining room: what you see.
+- **Controllers** are the waiters. They take your order when you click a button.
+- **The `Database` class** is the kitchen. It stores and finds the data.
+- **SQLite** is the fridge, where everything is actually kept.
 
 ```mermaid
 flowchart LR
@@ -62,7 +72,9 @@ flowchart LR
     D <--> DB[("SQLite<br/>studentkb.db")]
 ```
 
-### Class diagram
+### Class diagram (UML)
+
+This shows the main Java classes and how they connect. A dotted arrow means "uses." For example, every controller uses `Database` to save or load data. `StudentProfile` and `ProgrammingLanguage` are simple classes that hold the information for one student or one language.
 
 ```mermaid
 classDiagram
@@ -148,7 +160,9 @@ classDiagram
     Database ..> ProgrammingLanguage : creates
 ```
 
-### Database schema
+### How the data is stored
+
+The database has three tables, which work kind of like sheets in a spreadsheet. One student can have many comments, which is what the line between `STUDENTS` and `COMMENTS` means.
 
 ```mermaid
 erDiagram
@@ -177,9 +191,13 @@ erDiagram
     }
 ```
 
-`LANGUAGES` is the list shown on the profile forms. The names a student picks are saved as comma-separated text in `students.languages_known`, not through a join table. Each comment's date is stored at the start of its `content`, and the Profile Details pop-up splits it into its own column.
+A few things we kept simple on purpose:
+- The `LANGUAGES` table is just the list of choices you see on the form. When you pick languages for a student, we save them as plain text, like `"Java, Python"`.
+- Each comment starts with its date, like `2025-10-16 14:30 — Great at teamwork`. The Profile Details window splits that into a date column and a comment column.
 
-### Screen navigation
+### Workflow
+
+Everything starts at the Home screen. Solid arrows switch to a new screen. Dotted arrows open a small pop-up window.
 
 ```mermaid
 flowchart TD
@@ -198,7 +216,9 @@ flowchart TD
     Lang & Def & View & Search & Rep -- Back --> Home
 ```
 
-### Example: saving a new student
+### Step by step: what happens when you click "Save"
+
+Here's what goes on behind the scenes when you save a new student. First the app checks that the name isn't already taken. Then it saves the student, then saves each comment.
 
 ```mermaid
 sequenceDiagram
@@ -225,22 +245,25 @@ sequenceDiagram
 
 ```
 src/main/java/
-  module-info.java            module "studentkb"
-  studentkb/app/              Main (entry point), Views (FXML names + window titles)
-  studentkb/controller/       one JavaFX controller per screen
-  studentkb/db/               Database (SQLite access)
-  studentkb/model/            StudentProfile, ProgrammingLanguage
-  studentkb/util/             FxUtil (scene switching, FXML loading, alerts)
+  module-info.java            tells Java what our app needs
+  studentkb/app/              Main (where the app starts) and Views (list of screen files)
+  studentkb/controller/       one controller per screen: what happens when you click things
+  studentkb/db/               Database: saving and loading data
+  studentkb/model/            StudentProfile, ProgrammingLanguage: the data itself
+  studentkb/util/             FxUtil: helpers for switching screens and showing pop-up messages
 src/main/resources/studentkb/
-  views/                      FXML screens
-  styles/app.css              app theme (SJSU blue and gold)
+  views/                      the screen layouts (.fxml files)
+  styles/app.css              colors and styling (SJSU blue and gold)
 ```
 
-To add a new screen:
-1. Put the `.fxml` file in `studentkb/views/`.
-2. Add its name to `Views`.
-3. Open it with `FxUtil.switchScene(...)`, or with `FxUtil.loader(...)` and `FxUtil.scene(...)` for a pop-up, so it gets the app stylesheet.
+Want to add your own screen? Here's how:
+1. Make a new `.fxml` file in `studentkb/views/`.
+2. Add its file name to `Views.java`.
+3. Open it with `FxUtil.switchScene(...)`. For a pop-up, use `FxUtil.loader(...)` and `FxUtil.scene(...)` instead. Either way, it gets the same colors as the rest of the app.
 
-## Tech stack
+## What we used
 
-Java 23 · JavaFX 23 · SQLite (xerial `sqlite-jdbc`) · Maven
+- **Java 23**: the programming language
+- **JavaFX 23**: for building the windows, buttons and tables
+- **SQLite**: a small database that lives in one file on your computer
+- **Maven**: downloads the libraries we need and builds the app
