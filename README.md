@@ -1,4 +1,5 @@
 # Student Knowledge Base
+[![Build and test](https://github.com/Evie0007/Student-Knowledge-Base/actions/workflows/ci.yml/badge.svg)](https://github.com/Evie0007/Student-Knowledge-Base/actions/workflows/ci.yml)
 
 Imagine you're a teacher with a lot of students. You want to remember who knows Java, who already has a job, and what you thought of each person. That's what this app does! It's a desktop app where faculty can save student profiles, search through them and leave notes. Everything is saved on your own computer, so you don't need internet or an account.
 
@@ -38,6 +39,22 @@ mvnw.cmd clean javafx:run
 The first time it opens, the app creates a file called `studentkb.db`. That's where all your data is saved. It also adds Java, Python and C++ so the language list isn't empty.
 
 *(Optional: to save the data somewhere else, add `-Dstudentkb.db=/path/to/file.db` when you start Java.)*
+
+## How to run the tests
+
+We wrote 13 JUnit tests that check the database code. For example, they make sure you can't add the same language twice, that students come back sorted by name, and that the newest comment shows up first. To run them:
+
+```bash
+# Windows
+mvnw.cmd verify
+
+# macOS / Linux
+./mvnw verify
+```
+
+If everything works, you'll see `Tests run: 13, Failures: 0` and `BUILD SUCCESS`. Don't worry about your data: the tests use their own database file in the `target/` folder, so your real `studentkb.db` is never touched.
+
+GitHub also runs these tests automatically every time we push code. That's what the green **passing** badge at the top of this page shows.
 
 ## How it works
 
@@ -267,3 +284,5 @@ Want to add your own screen? Here's how:
 - **JavaFX 23**: for building the windows, buttons and tables
 - **SQLite**: a small database that lives in one file on your computer
 - **Maven**: downloads the libraries we need and builds the app
+- **JUnit 5**: for writing tests that check our code works
+- **GitHub Actions**: runs our tests automatically every time we push code to GitHub
