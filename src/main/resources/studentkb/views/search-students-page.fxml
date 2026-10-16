@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="studentkb.controller.SearchStudentController"
+            prefHeight="800" prefWidth="800">
+
+    <top>
+        <VBox>
+            <VBox styleClass="header">
+                <Label text="Search/Edit Student Profiles" styleClass="page-title"/>
+            </VBox>
+
+            <VBox styleClass="card" spacing="14">
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="130"/>
+                        <ColumnConstraints prefWidth="200" hgrow="ALWAYS"/>
+                        <ColumnConstraints prefWidth="130"/>
+                        <ColumnConstraints prefWidth="200" hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <Label text="Student Name:" styleClass="field-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Preferred Role:" styleClass="field-label" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <TextField fx:id="roleField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                    <Label text="Languages Known:" styleClass="field-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="languagesField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Academic Status:" styleClass="field-label" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <TextField fx:id="academicStatusField" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                    <Label text="Job Status:" styleClass="field-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="jobStatusField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Databases Known:" styleClass="field-label" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                    <TextField fx:id="databasesField" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                </GridPane>
+
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button text="Clear" onAction="#clearSearch"/>
+                    <Button text="Show All" onAction="#showAllStudents"/>
+                    <Button text="Search" onAction="#searchStudents" styleClass="primary"/>
+                </HBox>
+                <VBox.margin><Insets top="20" right="20" left="20"/></VBox.margin>
+            </VBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="table" prefHeight="500">
+            <columns>
+                <TableColumn fx:id="nameCol" prefWidth="140" text="Name"/>
+                <TableColumn fx:id="roleCol" prefWidth="120" text="Preferred Role"/>
+                <TableColumn fx:id="academicCol" prefWidth="100" text="Academic"/>
+                <TableColumn fx:id="jobStatusCol" prefWidth="100" text="Job Status"/>
+                <TableColumn fx:id="jobDetailsCol" prefWidth="160" text="Job Details"/>
+                <TableColumn fx:id="languagesCol" prefWidth="160" text="Languages"/>
+                <TableColumn fx:id="databasesCol" prefWidth="120" text="Databases Known"/>
+                <TableColumn fx:id="commentsCol" prefWidth="150" text="Faculty Comments"/>
+                <TableColumn fx:id="whitelistCol" prefWidth="90" text="Whitelisted"/>
+                <TableColumn fx:id="blacklistCol" prefWidth="90" text="Blacklisted"/>
+            </columns>
+            <BorderPane.margin><Insets top="16" right="20" bottom="20" left="20"/></BorderPane.margin>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER_RIGHT" spacing="10">
+            <Button fx:id="backButton" text="Back" onAction="#onBack"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Delete Selected" onAction="#deleteSelectedStudent" styleClass="danger"/>
+            <Button text="Edit Selected" onAction="#editSelectedStudent" styleClass="primary"/>
+        </HBox>
+    </bottom>
+</BorderPane>

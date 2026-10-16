@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="800" prefWidth="800" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studentkb.controller.ProfileDetailsController">
+
+    <top>
+        <VBox styleClass="header">
+            <Label text="Student Profile Details" styleClass="page-title"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="16">
+            <VBox styleClass="card" spacing="12">
+                <Label text="Student Information" styleClass="section-title"/>
+                <GridPane hgap="14" vgap="8">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="140"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <Label styleClass="field-label" text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label fx:id="nameLabel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label styleClass="field-label" text="Preferred Role:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <Label fx:id="roleLabel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label styleClass="field-label" text="Academic Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <Label fx:id="academicLabel" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label styleClass="field-label" text="Job Status:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <Label fx:id="jobLabel" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                    <Label styleClass="field-label" text="Job Details:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <Label fx:id="jobDetailsLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                    <Label styleClass="field-label" text="Languages:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                    <Label fx:id="languagesLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+                    <Label styleClass="field-label" text="Databases:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                    <Label fx:id="databasesLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+                    <Label styleClass="field-label" text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                    <Label fx:id="statusLabel" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+                    <Label styleClass="field-label" text="Faculty Comments:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+                    <Label fx:id="facultyCommentsLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                </GridPane>
+            </VBox>
+
+            <VBox styleClass="card" spacing="10" VBox.vgrow="ALWAYS">
+                <Label text="Dated Comments" styleClass="section-title"/>
+                <TableView fx:id="commentsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="dateColumn" prefWidth="150" text="Date/Time"/>
+                        <TableColumn fx:id="commentColumn" prefWidth="500" text="Comment"/>
+                    </columns>
+                </TableView>
+            </VBox>
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER_RIGHT">
+            <Button onAction="#onClose" prefWidth="90" text="Close" styleClass="primary"/>
+        </HBox>
+    </bottom>
+</BorderPane>

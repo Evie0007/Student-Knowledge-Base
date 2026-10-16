@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="studentkb.controller.CommentViewController" prefHeight="800" prefWidth="800">
+    <top>
+        <VBox styleClass="header">
+            <Label text="Full Comment" styleClass="page-title"/>
+        </VBox>
+    </top>
+    <center>
+        <TextArea fx:id="fullCommentArea" editable="false" wrapText="true">
+            <BorderPane.margin><Insets top="16" right="16" bottom="16" left="16"/></BorderPane.margin>
+        </TextArea>
+    </center>
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER_RIGHT">
+            <Button text="Close" onAction="#onClose" styleClass="primary"/>
+        </HBox>
+    </bottom>
+</BorderPane>

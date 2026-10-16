@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="studentkb.controller.ReportsController"
+            prefHeight="800" prefWidth="800">
+    <top>
+        <VBox styleClass="header" spacing="2">
+            <Label text="Student Reports" styleClass="page-title"/>
+            <Label text="Double-click a student to see their full profile" styleClass="page-subtitle"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="16">
+            <HBox styleClass="card" spacing="18" alignment="CENTER_LEFT">
+                <Label text="Filter by:" styleClass="field-label"/>
+                <RadioButton fx:id="allRadio" text="All Students" selected="true" onAction="#onFilterChanged"/>
+                <RadioButton fx:id="whitelistedRadio" text="Whitelisted Only" onAction="#onFilterChanged"/>
+                <RadioButton fx:id="blacklistedRadio" text="Blacklisted Only" onAction="#onFilterChanged"/>
+            </HBox>
+
+            <TableView fx:id="studentsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="nameColumn" text="Student Name" prefWidth="120"/>
+                    <TableColumn fx:id="roleColumn" text="Preferred Role" prefWidth="100"/>
+                    <TableColumn fx:id="statusColumn" text="Academic Status" prefWidth="100"/>
+                    <TableColumn fx:id="jobColumn" text="Job Status" prefWidth="100"/>
+                    <TableColumn fx:id="languagesColumn" text="Languages" prefWidth="150"/>
+                    <TableColumn fx:id="commentColumn" text="Latest Comment" prefWidth="200"/>
+                </columns>
+            </TableView>
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER_RIGHT" spacing="10">
+            <Button fx:id="backButton" text="Back" onAction="#onBack"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="refreshButton" text="Refresh" onAction="#onRefresh" styleClass="primary"/>
+        </HBox>
+    </bottom>
+</BorderPane>

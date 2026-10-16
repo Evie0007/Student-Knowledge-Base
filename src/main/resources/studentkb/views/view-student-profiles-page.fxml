@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="studentkb.controller.ViewStudentProfilesController" prefHeight="800" prefWidth="800">
+    <top>
+        <VBox styleClass="header">
+            <Label text="All Student Profiles" styleClass="page-title"/>
+        </VBox>
+    </top>
+    <center>
+        <TableView fx:id="table" prefHeight="500">
+            <columns>
+                <TableColumn fx:id="nameCol" prefWidth="140" text="Name"/>
+                <TableColumn fx:id="roleCol" prefWidth="120" text="Preferred Role"/>
+                <TableColumn fx:id="academicCol" prefWidth="100" text="Academic"/>
+                <TableColumn fx:id="jobStatusCol" prefWidth="100" text="Job Status"/>
+                <TableColumn fx:id="jobDetailsCol" prefWidth="160" text="Job Details"/>
+                <TableColumn fx:id="languagesCol" prefWidth="160" text="Languages"/>
+                <TableColumn fx:id="databaseCol" prefWidth="100" text="Databases Known"/>
+                <TableColumn fx:id="commentsCol" prefWidth="130" text="Faculty Comments"/>
+                <TableColumn fx:id="whitelistCol" prefWidth="90" text="Whitelisted"/>
+                <TableColumn fx:id="blacklistCol" prefWidth="90" text="Blacklisted"/>
+            </columns>
+            <BorderPane.margin><Insets top="20" right="20" bottom="20" left="20"/></BorderPane.margin>
+        </TableView>
+    </center>
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER_RIGHT" spacing="10">
+            <Button fx:id="backButton" text="Back" onAction="#onBack"/>
+        </HBox>
+    </bottom>
+</BorderPane>

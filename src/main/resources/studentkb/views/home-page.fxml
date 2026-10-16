@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="studentkb.controller.HomeController" prefHeight="800" prefWidth="800">
+    <top>
+        <VBox styleClass="header" spacing="2">
+            <Label text="Student Knowledge Base" styleClass="page-title"/>
+            <Label text="Track student skills, career goals and faculty comments" styleClass="page-subtitle"/>
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <VBox styleClass="card" spacing="12" alignment="CENTER" maxWidth="400">
+                <Label text="What would you like to do?" styleClass="section-title">
+                    <VBox.margin><Insets bottom="4"/></VBox.margin>
+                </Label>
+                <Button text="Define Programming Languages" onAction="#onDefineLanguages" styleClass="nav-button"/>
+                <Button text="Define Student Profile" onAction="#onDefineStudentProfile" styleClass="nav-button"/>
+                <Button text="View Student Profiles" onAction="#onViewStudentProfiles" styleClass="nav-button"/>
+                <Button text="Search/Edit Student Profiles" onAction="#onSearchStudentProfiles" styleClass="nav-button"/>
+                <Button text="View Reports" onAction="#onViewReports" styleClass="nav-button"/>
+            </VBox>
+            <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+        </VBox>
+    </center>
+</BorderPane>

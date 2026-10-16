@@ -1,0 +1,267 @@
+/* App theme: SJSU blue and gold. Applied to every scene by FxUtil.scene(...) */
+
+.root {
+    -sjsu-blue: #0055A2;
+    -sjsu-blue-dark: #003F7A;
+    -sjsu-blue-light: #E8F0FA;
+    -sjsu-gold: #E5A823;
+    -sjsu-gold-dark: #C98F12;
+    -page-bg: #F3F5F9;
+    -border: #D5DCE6;
+    -text: #1F2933;
+    -muted: #5B6675;
+    -danger: #B42318;
+
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: -page-bg;
+
+    /* Modena colors used for selection and focus */
+    -fx-accent: -sjsu-blue;
+    -fx-focus-color: -sjsu-gold;
+    -fx-faint-focus-color: #E5A82322;
+    -fx-selection-bar-non-focused: #CFE0F4;
+}
+
+/* ---------- Page header ---------- */
+
+.header {
+    -fx-background-color: -sjsu-blue;
+    -fx-padding: 18 24 16 24;
+    -fx-border-color: transparent transparent -sjsu-gold transparent;
+    -fx-border-width: 0 0 4 0;
+}
+
+.page-title {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: #D6E4F5;
+    -fx-font-size: 13px;
+}
+
+/* ---------- Cards and sections ---------- */
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: -border;
+    -fx-border-radius: 10;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(16, 40, 80, 0.08), 12, 0, 0, 2);
+}
+
+.section-title {
+    -fx-text-fill: -sjsu-blue;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.field-label {
+    -fx-text-fill: -muted;
+    -fx-font-weight: bold;
+}
+
+/* Label next to a tall field (list, text area): line it up with the field's first line */
+.top-label {
+    -fx-padding: 6 0 0 0;
+}
+
+.footer {
+    -fx-background-color: white;
+    -fx-border-color: -border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 12 20 12 20;
+}
+
+.page-scroll,
+.page-scroll > .viewport {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+    -fx-border-color: -border;
+    -fx-border-radius: 6;
+    -fx-padding: 7 16 7 16;
+    -fx-text-fill: -text;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: -sjsu-blue-light;
+    -fx-border-color: -sjsu-blue;
+}
+
+.button:pressed {
+    -fx-background-color: #D3E2F4;
+}
+
+.button:focused {
+    -fx-border-color: -sjsu-gold;
+}
+
+.nav-button:focused {
+    -fx-border-color: -sjsu-gold;
+}
+
+.button.primary,
+.dialog-pane .button:default {
+    -fx-background-color: -sjsu-blue;
+    -fx-border-color: -sjsu-blue;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button.primary:hover,
+.dialog-pane .button:default:hover {
+    -fx-background-color: -sjsu-blue-dark;
+}
+
+.button.primary:focused {
+    -fx-border-color: -sjsu-gold;
+}
+
+.button.accent {
+    -fx-background-color: -sjsu-gold;
+    -fx-border-color: -sjsu-gold;
+    -fx-text-fill: #1F2933;
+    -fx-font-weight: bold;
+}
+
+.button.accent:hover {
+    -fx-background-color: -sjsu-gold-dark;
+    -fx-border-color: -sjsu-gold-dark;
+}
+
+.button.danger {
+    -fx-text-fill: -danger;
+    -fx-border-color: #F1B5AE;
+}
+
+.button.danger:hover {
+    -fx-background-color: #FDECEA;
+    -fx-border-color: -danger;
+}
+
+/* Big buttons on the home screen */
+.nav-button {
+    -fx-pref-width: 340;
+    -fx-pref-height: 52;
+    -fx-font-size: 15px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 20 0 20;
+    -fx-border-color: -border -border -border -sjsu-gold;
+    -fx-border-width: 1 1 1 5;
+}
+
+.nav-button:hover {
+    -fx-border-color: -sjsu-blue -sjsu-blue -sjsu-blue -sjsu-gold;
+}
+
+/* ---------- Inputs ---------- */
+
+.text-field,
+.text-area,
+.choice-box,
+.list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+    -fx-border-color: -border;
+    -fx-border-radius: 6;
+}
+
+.text-field {
+    -fx-padding: 6 10 6 10;
+}
+
+.text-area .content {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+}
+
+.text-field:focused,
+.text-area:focused,
+.choice-box:focused,
+.list-view:focused {
+    -fx-border-color: -sjsu-blue;
+}
+
+.choice-box {
+    -fx-padding: 2 4 2 4;
+}
+
+.check-box:selected > .box,
+.radio-button:selected > .radio {
+    -fx-background-color: -sjsu-blue;
+}
+
+.check-box:selected > .box > .mark,
+.radio-button:selected > .radio > .dot {
+    -fx-background-color: white;
+}
+
+/* ---------- Tables ---------- */
+
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: -border;
+    -fx-border-radius: 8;
+    -fx-padding: 0;
+    -fx-control-inner-background-alt: #F6F9FD;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -sjsu-blue;
+    -fx-background-radius: 8 8 0 0;
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent rgba(255, 255, 255, 0.25) transparent transparent;
+}
+
+.table-view .column-header {
+    -fx-size: 36;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .column-header .arrow {
+    -fx-background-color: -sjsu-gold;
+}
+
+.table-row-cell {
+    -fx-cell-size: 32;
+}
+
+.table-row-cell:filled:hover {
+    -fx-background: -sjsu-blue-light;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: -muted;
+    -fx-font-size: 14px;
+}
+
+/* ---------- Dialogs ---------- */
+
+.dialog-pane {
+    -fx-background-color: white;
+}
+
+.dialog-pane > .button-bar > .container {
+    -fx-padding: 4 0 0 0;
+}
